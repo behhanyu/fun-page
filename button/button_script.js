@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
       this.hover = false;
       this.calculatePosition();
       this.attachEventsListener();
+      this.timeoutId = null; // Track the timeout ID
     }
     
     attachEventsListener() {
@@ -35,13 +36,14 @@ document.addEventListener('DOMContentLoaded', function() {
          hover = true;
           if (!this.hover) {
             this.hover = true;
+            clearTimeout(this.timeoutId); // Clear the previous timeout
+            this.onHover(e.clientX, e.clientY);
           }
-          this.onHover(e.clientX, e.clientY);
       }
       
       if(!hover && this.hover) {
-        this.onLeave();
         this.hover = false;
+        this.startScaleBackTimeout(); // Start the timeout for scaling back
       }
     }
     
@@ -56,10 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
       this.el.style.zIndex = 10;
     }
     
-    onLeave() {
+    startScaleBackTimeout() {
       gsap.to(this.el, {
-        x: 0,
-        y: 0,
         scale: 0.5,
         ease: 'elastic.out(1.2, 0.4)',
         duration: 0.7
