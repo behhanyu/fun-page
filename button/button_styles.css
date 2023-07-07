@@ -4,7 +4,7 @@ body{
   overflow: hidden;
   justify-content: center;
   align-items: center;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/unsplahBg2.jpg) no-repeat center / cover;
+  background:FAF0E4;
 }
 ul{
   padding: 0;
@@ -14,20 +14,20 @@ li{
   list-style-type: none;
   margin: 0 20px;
   &:nth-child(1) button {
-    background: #F3FFBD;
+    background:#9BCDD2;
   }
   &:nth-child(2) button {
-    background: #247BA0;
+    background: #FF8551;
   }
   &:nth-child(3) button {
-    background: #FF1654;
+    background: #FFDEDE;
   }
 }
 button {
   position: relative;
   background: rebeccapurple;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   border:5px solid white;
   color: white;
