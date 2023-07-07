@@ -1,15 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fun Page</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <script src="script.js"></script>
+  <title>Moving Buttons</title>
+  <style>
+    .moving-button {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      background-color: orange;
+      color: #00f;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
+
+    .moving-button.clicked {
+      color: #800080;
+    }
+  </style>
 </head>
 <body>
-  <ul>
-    <li><a href="kinetic/kinetic.html">Kinetic Square</a></li>
-    <li><a href="button/button.html">Attract hover effect</a></li>
-    <li><a href="glitch/glitch.html">Glitch effect</a></li>
-  </ul>
+  <div class="moving-button" id="button1"><a href="kinetic/kinetic.html">Kinetic square</a></div>
+  <div class="moving-button" id="button2"><a href="button/button.html">Balloon</a></div>
+  <div class="moving-button" id="button3"><a href="glitch/glitch.html">Glitching</a></div>
+
+  <script>
+    // Function to move the button along a track and bounce off the edges
+    function moveButton(buttonId, speedX, speedY) {
+      var button = document.getElementById(buttonId);
+      var screenWidth = window.innerWidth - button.offsetWidth;
+      var screenHeight = window.innerHeight - button.offsetHeight;
+      var trackWidth = screenWidth - button.offsetWidth;
+      var trackHeight = screenHeight - button.offsetHeight;
+
+      var currentX = Math.random() * trackWidth;
+      var currentY = Math.random() * trackHeight;
+      var directionX = Math.random() < 0.5 ? -1 : 1;
+      var directionY = Math.random() < 0.5 ? -1 : 1;
+
+      setInterval(function() {
+        currentX += speedX * directionX;
+        currentY += speedY * directionY;
+
+        if (currentX > trackWidth || currentX < 0) {
+          directionX *= -1;
+        }
+        if (currentY > trackHeight || currentY < 0) {
+          directionY *= -1;
+        }
+
+        button.style.left = currentX + "px";
+        button.style.top = currentY + "px";
+      }, 10); // Run every 10 milliseconds
+    }
+
+    // Add click event listeners to each button
+    var buttons = document.getElementsByClassName("moving-button");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener("click", function() {
+        this.classList.toggle("clicked");
+      });
+    }
+
+    // Move each button along its track
+    moveButton("button1", 0.5, 0.25);
+    moveButton("button2", 0.2, 0.15);
+    moveButton("button3", 0.3, 0.1);
+  </script>
 </body>
 </html>
