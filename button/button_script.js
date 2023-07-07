@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
       gsap.to(this.el,  {
         x: (x - this.x) * 0.4,
         y: (y - this.y) * 0.4,
-        scale: 1.15,
+        scale: 1.5,
         ease: 'power2.out',
         duration: 0.4
       });
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
       gsap.to(this.el, {
         x: 0,
         y: 0,
-        scale: 1,
+        scale: 0.5,
         ease: 'elastic.out(1.2, 0.4)',
         duration: 0.7
       });
